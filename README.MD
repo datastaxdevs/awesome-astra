@@ -25,7 +25,7 @@
 
 #### IDE and Modelling
 - [DBeaver](#)
-- [IntelliJ](#)
+- [IntelliJ](#intellij)
 - [VSCode](#)
 
 #### Java
