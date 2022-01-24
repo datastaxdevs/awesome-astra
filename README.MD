@@ -28,7 +28,7 @@
 
 #### Java
 - [Java drivers](#)
-- [Micronaut](#)
+- [Micronaut](/micronaut)
 - [Quarkus](#)
 - [Spring Boot and Spring Data](#)
 - [Astra Java SDK](#)
