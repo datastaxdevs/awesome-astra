@@ -1,8 +1,6 @@
-# Working with Astra DB and `Pentaho Data Integration`
+# Working with Astra DB and `Temporal/ Cadence`
 
-*This article was originally written by **Erick ramirez** on [community.datastax.com](https://community.datastax.com/articles/12289/how-to-connect-to-astra-db-from-pentaho-data-integ.html)*
-
-<img src="img/logo-pentaho.png" height="100px" />
+<img src="img/logo.svg" height="100px" />
 
 [🏠 Back to LIST](../README.MD)
 
