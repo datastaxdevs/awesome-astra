@@ -6,94 +6,70 @@
 
 ## Overview
 
-<img src="img/pdi.png" height="100px" />
+- Temporal is implemented in Go and use GoCQL Driver
 
-Pentaho Data Integration (PDI) provides the Extract, Transform, and Load (ETL) capabilities that facilitate the process of capturing, cleansing, and storing data using a uniform and consistent format that is accessible and relevant to end users and IoT technologies.
+- 2 ways to connect: Using SSL setting in the SCB or Cql-PROXY
 
-- ℹ️ [Introduction to PDI](https://blog.knoldus.com/introduction-to-pdi/)
-- 📥 [PDI Download Link](https://sourceforge.net/projects/pentaho/)
-- 📘 [Installation Guide on Linux](https://www.hitachivantara.com/en-us/pdf/white-paper/pentaho-ce-installation-guide-on-linux-operating-system-whitepaper.pdf)
-- 📘 [Installation Guide on Windows](https://www.hitachivantara.com/en-us/pdf/white-paper/pentaho-community-edition-installation-guide-for-windows-whitepaper.pdf)
-  
-## Prerequisites
-
-- [Create an Astra Database](../astra/CREATE-AN-INSTANCE.MD)
-
-- [Create an Astra Token](../astra/CREATE-A-TOKEN.MD)
-
-- [Download and install PDI](https://sourceforge.net/projects/pentaho/)
-
-This article was written for version `9.1` on `MacOS` but it should also work for the Windows version.
-
-## Installation and Setup
-
-- Micronaut Cassandra configuration using 3x
-- Micronaut Cassandra using 4x, the latest
-
-- [Working Sample](https://github.com/clun/astra-native-java/tree/main/astra-todo-micronaut)
-
-- [Micronaut Cassandra documentation](https://micronaut-projects.github.io/micronaut-cassandra/latest/guide/)
-
-
-## Sample `pom.xml`
-
-```xml
-<dependency>
-      <groupId>io.micronaut.cassandra</groupId>
-      <artifactId>micronaut-cassandra</artifactId>
-      <scope>compile</scope>
-</dependency>
-```
-
-## Sample Configuration File
+### Procedure `GoCQLDriver`
 
 ```yaml
-# Astra
-cassandra:
-  default:
-    basic:
-      request:
-        timeout: 5 seconds
-        consistency: LOCAL_QUORUM
-        page-size: 5000
-      session-keyspace: native_java
-      cloud:
-        secure-connect-bundle: /Users/cedricklunven/Downloads/secure-connect-workshops.zip
-    advanced:
-      auth-provider:
-        class: PlainTextAuthProvider
-        username: token
-        password: YOUR_TOKEN
-      connection:
-        init-query-timeout: 10 seconds          
-        set-keyspace-timeout: 10 seconds
-      control-connection.timeout: 10 seconds
+version: "3.5"
+services:
+  temporal:
+    container_name: temporal
+    environment:
+      - DYNAMIC_CONFIG_FILE_PATH=config/dynamicconfig/development.yaml
+      - DB=cassandra
+      - SKIP_SCHEMA_SETUP=true
+      - CASSANDRA_SEEDS=3ed83de7-d97f-4fb6-bf9f-82e9f7eafa23-eu-west-1.db.astra.datastax.com
+      - CASSANDRA_PORT=29042
+      - CASSANDRA_USER=TBD
+      - CASSANDRA_PASSWORD=TBD
+      - CASSANDRA_TLS_ENABLED=true
+      - CASSANDRA_TLS_DISABLE_HOST_VERIFICATION=true
+      - CASSANDRA_TLS_SERVER_NAME=3ed83de7-d97f-4fb6-bf9f-82e9f7eafa23-eu-west-1.db.astra.datastax.com
+      - CASSANDRA_CERT=/etc/temporal/config/dynamicconfig/cert
+      - CASSANDRA_CERT_KEY=/etc/temporal/config/dynamicconfig/key
+      - CASSANDRA_CA=/etc/temporal/config/dynamicconfig/ca.crt
+      
+    image: temporalio/auto-setup:1.14.2
+    networks:
+      - temporal-network
+    ports:
+      - 7233:7233
+    volumes:
+      - ./dynamicconfig:/etc/temporal/config/dynamicconfig
 ```
 
-## Sample Code intialize
+### Procedure with `Cql-Proxy`
 
-```java
-@Singleton
-public class TodoApplicationStartup  implements ApplicationEventListener<ServiceReadyEvent> {
+```yaml
+version: "3.5"
+services:
+  cql-proxy:
+    image: datastax/cql-proxy:v0.0.4
+    volumes:
+      - ./cql-proxy/secure-connect-temporal.zip:/tmp/scb.zip
+    networks:
+      - temporal-network
+    ports:
+      - 7001:7001
+      - 7199:7199
+      - 9042:9042
+      - 9160:9160
+    environment:
+      - BUNDLE=/tmp/scb.zip
+      - USERNAME=TBD
+      - PASSWORD=TBD 
 
-    /** Logger for the class. */
-    private static final Logger LOGGER = LoggerFactory.getLogger(TodoApplicationStartup.class);
-    
-    @Property(name = "todo.cassandra.create_schema", defaultValue="false")
-    private boolean createTable;
-    
-    @Inject 
-    private CqlSession cqlSession;
-    
-    /** {@inheritDoc} */
-    @Override
-    public void onApplicationEvent(final ServiceReadyEvent event) {
-        LOGGER.info("Startup Initialization");
-        if (createTable) {
-            TodoServiceCassandraCql.createTableTodo(cqlSession);
-            LOGGER.info("+ Table TodoItems created if needed.");
-        }
-        LOGGER.info("[OK]");
-```        
-
-
+  temporal:
+    container_name: temporal
+    depends_on:
+      - cql-proxy
+    environment:
+      - CASSANDRA_SEEDS=cql-proxy
+      - CASSANDRA_KEYSPACE=temporal
+      - DYNAMIC_CONFIG_FILE_PATH=config/dynamicconfig/development.yaml
+      - CASSANDRA_USER=TBD
+      - CASSANDRA_PASSWORD=TBD
+```
