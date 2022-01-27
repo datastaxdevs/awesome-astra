@@ -1,10 +1,8 @@
-
 # ⚒️ Awesome Astra
-
-> **Tools, Solutions and Guides to work with Astra**
-
 [![Awesome](https://awesome.re/badge-flat.svg)](https://awesome.re)
 [![License Apache2](https://img.shields.io/hexpm/l/plug.svg)](http://www.apache.org/licenses/LICENSE-2.0)
+
+> **Tools, Solutions and Guides to work with Astra**
 
 ## 📋 Table of Contents
 
