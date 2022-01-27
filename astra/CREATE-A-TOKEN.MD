@@ -32,7 +32,7 @@ The values of `clientSecret` and `token` will not be shown to you later for secu
 
 <img src="img/astra-create-token.gif" />
 
-You can use the clipboard icons in from of each parameter to put them in the clipboard and be copied elsewhere
+You can use the clipboard icons close to each parameter to clip them and copy them elsewhere.
 
 <img src="img/astra-create-token-4.png" />
 
