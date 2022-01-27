@@ -8,8 +8,8 @@
 
 ### A - Tutorials
 
-- [Create an Instance](./astra/CREATE-AN-INSTANCE.MD)
-- [Create a Token](#)
+- [Create an Astra Instance](./astra/CREATE-AN-INSTANCE.MD)
+- [Create an Astra Token](#)
 - [Create a Custom Role](#)
 - [Invite a friend to your organization](#)
 - [Import Data with the Astra Loader](#)
@@ -18,7 +18,12 @@
 - [Download Secure Cloud Bundle](#)
 - [Create a new region](#)
 
-### B - Third party integration
+### B - Third party integrations
+
+#### Integration 
+
+- [Pentaho Data Integration (PDI)](/pentaho-data-integration) : Pentaho Data Integration (PDI) provides the Extract, Transform, and Load (ETL) capabilities that facilitate the process of capturing, cleansing, and storing data using a uniform and consistent format that is accessible and relevant to end users and IoT technologies.
+
 
 #### IDE and Modelling
 - [DBeaver](#)
