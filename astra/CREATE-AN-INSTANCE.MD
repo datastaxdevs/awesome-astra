@@ -1,5 +1,10 @@
 # Create an Astra Instance
 
+<<<<<<< HEAD
+=======
+[🏠 Back to Reference List](../README.MD)
+
+>>>>>>> d7771cb45bd054921bf4be311e3ff3cb21546fca
 > The astra instance creation procedure is also described in the [reference documentation](https://docs.datastax.com/en/astra/docs/creating-your-astra-database.html)
 
 **`ASTRA DB`** is the simplest way to run Cassandra with zero operations at all - just push the button and get your cluster. No credit card required, $25.00 USD credit every month, roughly 5M writes, 30M reads, 40GB storage monthly - sufficient to run small production workloads.
@@ -31,5 +36,8 @@ You can use your `Github`, `Google` accounts or register with an `email`. With t
 **👁️ Walkthrough**
 
 <img src="./img/astra-create-db.gif" />
+<<<<<<< HEAD
 
 - ℹ️ No need to wait for the database to be in active mode to create a token
+=======
+>>>>>>> d7771cb45bd054921bf4be311e3ff3cb21546fca

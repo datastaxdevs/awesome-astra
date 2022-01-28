@@ -12,6 +12,7 @@
 
 Pentaho Data Integration (PDI) provides the Extract, Transform, and Load (ETL) capabilities that facilitate the process of capturing, cleansing, and storing data using a uniform and consistent format that is accessible and relevant to end users and IoT technologies.
 
+<<<<<<< HEAD
 - ℹ️ [PDI Reference Documentation](#)
 - 📥 [PDI Download Link](https://sourceforge.net/projects/pentaho/)
 - 📘 [Installation Guide on Linux](https://www.hitachivantara.com/en-us/pdf/white-paper/pentaho-ce-installation-guide-on-linux-operating-system-whitepaper.pdf)
@@ -22,6 +23,18 @@ Pentaho Data Integration (PDI) provides the Extract, Transform, and Load (ETL) c
 - [Create an Astra Database]()
 
 - [Create an Astra Token]()
+=======
+- ℹ️ [Introduction to PDI](https://blog.knoldus.com/introduction-to-pdi/)
+- 📥 [PDI Download Link](https://sourceforge.net/projects/pentaho/)
+- 📘 [Installation Guide on Linux](https://www.hitachivantara.com/en-us/pdf/white-paper/pentaho-ce-installation-guide-on-linux-operating-system-whitepaper.pdf)
+- 📘 [Installation Guide on Windows](https://www.hitachivantara.com/en-us/pdf/white-paper/pentaho-community-edition-installation-guide-for-windows-whitepaper.pdf)
+  
+## Prerequisites
+
+- [Create an Astra Database](../astra/CREATE-AN-INSTANCE.MD)
+
+- [Create an Astra Token](../astra/CREATE-A-TOKEN.MD)
+>>>>>>> d7771cb45bd054921bf4be311e3ff3cb21546fca
 
 - [Download and install PDI](https://sourceforge.net/projects/pentaho/)
 

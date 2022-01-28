@@ -1,16 +1,16 @@
+# ⚒️ Awesome Astra
 
-# ⚒️ Tools, Solutions and Guides to work with Astra
-
-[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/datastaxdevs/workshop-streaming-game)
+[![Awesome](https://awesome.re/badge-flat.svg)](https://awesome.re)
 [![License Apache2](https://img.shields.io/hexpm/l/plug.svg)](http://www.apache.org/licenses/LICENSE-2.0)
-[![Discord](https://img.shields.io/discord/685554030159593522)](https://discord.com/widget?id=685554030159593522&theme=dark)
+
+> **Tools, Solutions and Guides to work with Astra**
 
 ## 📋 Table of Contents
 
 ### A - Tutorials
 
-- [Create an Instance](#)
-- [Create a Token](#)
+- [Create an Astra Instance](./astra/CREATE-AN-INSTANCE.MD)
+- [Create an Astra Token](./astra/CREATE-A-TOKEN.MD)
 - [Create a Custom Role](#)
 - [Invite a friend to your organization](#)
 - [Import Data with the Astra Loader](#)
@@ -19,12 +19,36 @@
 - [Download Secure Cloud Bundle](#)
 - [Create a new region](#)
 
-### B - Third party integration
+### B - Third party integrations
 
-#### IDE and Modelling
+#### 🔌 Integration 
+
+- [Pentaho Data Integration (PDI)](/pentaho-data-integration) : Pentaho Data Integration (PDI) provides the Extract, Transform, and Load (ETL) capabilities that facilitate the process of capturing, cleansing, and storing data using a uniform and consistent format that is accessible and relevant to end users and IoT technologies.
+
+
+- [Temporal](/temporal): Temporal is the open source microservice orchestration platform for writing durable workflows as code.
+
+#### 🖥️ IDE and Modelling
+
+- [IntelliJ](/intellij): 
+
+- [VSCode](/vscode)
+
 - [DBeaver](#)
-- [IntelliJ](/intellij)
-- [VSCode](#)
+
+- [TablePlus](#)
+
+- [DataStax Studio](#)
+
+- [MindDB](#)
+
+#### Frameworks
+
+- [Apache Spark](#)
+
+- [Janus Graph](#)
+
+
 
 #### ETL And Data Integration
 
@@ -54,7 +78,7 @@
 #### Go
 - [GoCql Drivers](#)
 
-### C - Astra Streaming Tips and Tricks
+### C - Astra Streaming Tips and Tricks_
 
 
 
