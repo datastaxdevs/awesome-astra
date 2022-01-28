@@ -26,6 +26,12 @@
 - [IntelliJ](/intellij)
 - [VSCode](#)
 
+#### ETL And Data Integration
+
+- [Pentaho Data Integration (PDI)](/pentaho-data-integration) : Pentaho Data Integration (PDI) provides the Extract, Transform, and Load (ETL) capabilities that facilitate the process of capturing, cleansing, and storing data using a uniform and consistent format that is accessible and relevant to end users and IoT technologies.
+
+[Introduction to the tool](https://blog.knoldus.com/introduction-to-pdi/)
+[Download](https://sourceforge.net/projects/pentaho/)
 #### Java
 - [Java drivers](#)
 - [Micronaut](/micronaut)
