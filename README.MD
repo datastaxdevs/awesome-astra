@@ -7,18 +7,6 @@
 
 ## 📋 Table of Contents
 
-### A - Tutorials
-
-- [Create an Astra Instance](./astra/CREATE-AN-INSTANCE.MD)
-- [Create an Astra Token](./astra/CREATE-A-TOKEN.MD)
-- [Create a Custom Role](#)
-- [Invite a friend to your organization](#)
-- [Import Data with the Astra Loader](#)
-- [Accessing GraphqQL with Playground](#)
-- [Accessing Rest Api through Swagger UI](#)
-- [Download Secure Cloud Bundle](#)
-- [Create a new region](#)
-
 ### B - Third party integrations
 
 #### 🔌 Integration 
