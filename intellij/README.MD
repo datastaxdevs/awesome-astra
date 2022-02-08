@@ -2,6 +2,7 @@
 
 *[Astra DB Explorer Plugin webpage](https://plugins.jetbrains.com/plugin/17013-datastax-astra-db-explorer)*
 
+*[Astra DB Explorer Installation Page](https://github.com/datastax/astra-ide-plugin/wiki/Getting-Started)*
 
 Astra DB is a serverless NoSQL database as a service, built on Apache Cassandra (tm). Navigate, insert and edit data in your Astra DB without coding, directly in your favorite JetBrains IDE using this plugin from DataStax. This plugin also works with open source Apache Cassandra 4.0 once a Stargate Data API gateway has been configured.
 

@@ -16,86 +16,107 @@ Pentaho Data Integration (PDI) provides the Extract, Transform, and Load (ETL) c
 - 📥 [PDI Download Link](https://sourceforge.net/projects/pentaho/)
 - 📘 [Installation Guide on Linux](https://www.hitachivantara.com/en-us/pdf/white-paper/pentaho-ce-installation-guide-on-linux-operating-system-whitepaper.pdf)
 - 📘 [Installation Guide on Windows](https://www.hitachivantara.com/en-us/pdf/white-paper/pentaho-community-edition-installation-guide-for-windows-whitepaper.pdf)
-  
+
 ## Prerequisites
 
 - [Create an Astra Database](../astra/CREATE-AN-INSTANCE.MD)
-
 - [Create an Astra Token](../astra/CREATE-A-TOKEN.MD)
-
+- [Download your secure connect bundle ZIP](../astra/DOWNLOAD-SECURE-BUNDLE.MD)
 - [Download and install PDI](https://sourceforge.net/projects/pentaho/)
 
 This article was written for version `9.1` on `MacOS` but it should also work for the Windows version.
 
 ## Installation and Setup
 
-- Micronaut Cassandra configuration using 3x
-- Micronaut Cassandra using 4x, the latest
+### ✅ Step 1: Download JDBC Driver
 
-- [Working Sample](https://github.com/clun/astra-native-java/tree/main/astra-todo-micronaut)
+Download the JDBC driver from the DataStax website:
 
-- [Micronaut Cassandra documentation](https://micronaut-projects.github.io/micronaut-cassandra/latest/guide/)
+1. Go to https://downloads.datastax.com/#odbc-jdbc-drivers.
+2. Select **Simba JDBC Driver for Apache Cassandra.**
+3. Select **JDBC 4.2.**
+4. Read the license terms and accept it *(click the checkbox).*
+5. Hit the blue **Download** button.
+6. Once the download completes, **unzip** the downloaded file.
 
+### ✅ Step 2: Import Driver JAR in Pentaho
 
-## Sample `pom.xml`
+Deploy the Simba driver to Pentaho servers using the distribution tool:
 
-```xml
-<dependency>
-      <groupId>io.micronaut.cassandra</groupId>
-      <artifactId>micronaut-cassandra</artifactId>
-      <scope>compile</scope>
-</dependency>
+1. On your laptop or PC, copy the Simba JAR to the JDBC distribution directory:
+
+```bash
+$ cp CassandraJDBC42.jar pentaho/jdbc-distribution/
 ```
 
-## Sample Configuration File
+2. Run the distribution tool (`distribute-files.bat` on Windows)
 
-```yaml
-# Astra
-cassandra:
-  default:
-    basic:
-      request:
-        timeout: 5 seconds
-        consistency: LOCAL_QUORUM
-        page-size: 5000
-      session-keyspace: native_java
-      cloud:
-        secure-connect-bundle: /Users/cedricklunven/Downloads/secure-connect-workshops.zip
-    advanced:
-      auth-provider:
-        class: PlainTextAuthProvider
-        username: token
-        password: YOUR_TOKEN
-      connection:
-        init-query-timeout: 10 seconds          
-        set-keyspace-timeout: 10 seconds
-      control-connection.timeout: 10 seconds
+```bash
+$ cd /Applications/Pentaho/jdbc-distribution
+$ ./distribute-files.sh CassandraJDBC42.jar
 ```
 
-## Sample Code intialize
+3. Verify that the JAR has been copied to the PDI library:
+```bash
+$ cd /Applications/Pentaho
+$ ls -lh design-tools/data-integration/lib/CassandraJDBC42.jar
+```
 
-```java
-@Singleton
-public class TodoApplicationStartup  implements ApplicationEventListener<ServiceReadyEvent> {
+- Expected output:
+```
+-rw-r--r--  1 erick  vaxxed   16M 14 Sep 22:18 design-tools/data-integration/lib/CassandraJDBC42.jar
+```
 
-    /** Logger for the class. */
-    private static final Logger LOGGER = LoggerFactory.getLogger(TodoApplicationStartup.class);
-    
-    @Property(name = "todo.cassandra.create_schema", defaultValue="false")
-    private boolean createTable;
-    
-    @Inject 
-    private CqlSession cqlSession;
-    
-    /** {@inheritDoc} */
-    @Override
-    public void onApplicationEvent(final ServiceReadyEvent event) {
-        LOGGER.info("Startup Initialization");
-        if (createTable) {
-            TodoServiceCassandraCql.createTableTodo(cqlSession);
-            LOGGER.info("+ Table TodoItems created if needed.");
-        }
-        LOGGER.info("[OK]");
-```        
+```bash
+$ file design-tools/data-integration/lib/CassandraJDBC42.jar
+```
+
+- Expected output:
+```
+design-tools/data-integration/lib/CassandraJDBC42.jar: Java archive data (JAR)
+```
+
+4. Restart Pentaho on your workstation for the Simba driver to be loaded.
+
+### ✅ Step 3: Define a connection in Pentaho
+
+> In this section we assume that your database in Astra is called `pentaho` and as such the download secure bundle is called `secure-connect-pentaho.zip`
+
+1. Create a new Transformation.
+2. Open a new **Database Connection** dialog box.
+3. In the **Connection name** field, give your DB connection a name.
+4. Under **Connection type,** select **Generic database.**
+5. Set the **Custom connection URL**. *(Note that you will need to specify the full path to your secure bundle and adapt to your database name)*
+
+```
+jdbc:cassandra://;AuthMech=2;TunableConsistency=6;SecureConnectionBundlePath=/path/to/secure-connect-pentaho.zip
+```
+
+7. In the **Username** field, enter the string `token`.
+8. In the **Password** field, paste the value of the token you created in the Prerequisites section above. The token looks like `AstraCS:AbC...XYz:123...edf0`
+
+> <img src="img/pentaho-01-new-astra-connection.png" />
+
+9. Click on the **Test Connection** button to confirm that the driver configuration is working:
+
+> <img src="img/pentaho-02-test-connection.png" />
+
+10. Click on the OK button to save the connection settings.
 
 
+### ✅ Step 4: Final Test
+
+Connect to your Astra DB by launching the SQL Editor in Pentaho and run a simple CQL statement. For example:
+
+> <img src="img/pentaho-03-sql-editor.png" />
+
+Here's an example output:
+
+> <img src="img/pentaho-04-preview-data.png" />
+
+You should also be able to browse the keyspaces in your Astra DB using the DataBase Explorer. Here's an example output:
+
+> <img src="img/pentaho-05-db-explorer.png" />
+
+
+[🏠 Back to LIST](../README.MD)
