@@ -28,10 +28,8 @@ From the [Astra DB dashboard](https://astra.datastax.com), click on your databas
 ### Download the secure bundle
 Next, click the “Connect” tab.  Under “Connect using a driver” section, select from any of the languages listed below.  Click the big, blue button labeled “Download Bundle” as shown in figure 1.
 
-<img src="img/download-secure-bundle.png" height="300px" />
-<center>
+<img src="img/download-secure-bundle.png" height="400px" />
 _Figure 1 - Downloading the Secure Connect Bundle_
-</center>
 
 ## cql-proxy
 DataStax’s cql-proxy is designed to function as an intermediate connection point to allow legacy Apache Cassandra applications to connect to DataStax Astra DB using its new Secure Connect Bundle.  There are a few ways to install and run DataStax’s cql-proxy, as outlined in its [GitHub README](https://github.com/datastax/cql-proxy/).
@@ -63,10 +61,8 @@ Inside Apache Airflow, click `Connections` from underneath the `Admin` drop-down
  - Password: Your Astra DB client secret.
  - Port: The port that cql-proxy is listening on for the CQL native binary protocol, most likely 9042.
 
-<img src="img/airflow-connection.png" height="300px" />
-<center>
+<img src="img/airflow-connection.png" height="400px" />
 _Figure 2 - Create a new Cassandra connection for Apache Airflow._
-</center>
 
 Click the blue “Save” button to persist the new connection.
 
