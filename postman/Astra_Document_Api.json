@@ -1,0 +1,171 @@
+{
+	"info": {
+		"_postman_id": "b4af660e-c29c-4961-843d-bcc884da8e59",
+		"name": "Astra_Document_Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "namespaces",
+			"item": [
+				{
+					"name": "[Namespace] - List Namespaces",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Cassandra-Token",
+								"type": "text",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{db}}-{{region}}.apps.astra.datastax.com/api/rest/v2/schemas/namespaces/",
+							"protocol": "https",
+							"host": [
+								"{{db}}-{{region}}",
+								"apps",
+								"astra",
+								"datastax",
+								"com"
+							],
+							"path": [
+								"api",
+								"rest",
+								"v2",
+								"schemas",
+								"namespaces",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Namespace] - Get Namespace Details",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Cassandra-Token",
+								"type": "text",
+								"value": "{{token}}"
+							}
+						],
+						"url": {
+							"raw": "https://{{db}}-{{region}}.apps.astra.datastax.com/api/rest/v2/schemas/namespaces/{{namespace}}",
+							"protocol": "https",
+							"host": [
+								"{{db}}-{{region}}",
+								"apps",
+								"astra",
+								"datastax",
+								"com"
+							],
+							"path": [
+								"api",
+								"rest",
+								"v2",
+								"schemas",
+								"namespaces",
+								"{{namespace}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Namespace] - Create a namespace",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Cassandra-Token",
+								"type": "text",
+								"value": "{{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"{{namespace}}\",\n   \"datacenters\":\n      [\n         { \"name\": \"dc-1\", \"replicas\": 1 }\n      ]\n}"
+						},
+						"url": {
+							"raw": "https://{{db}}-{{region}}.apps.astra.datastax.com/api/rest/v2/schemas/namespaces/",
+							"protocol": "https",
+							"host": [
+								"{{db}}-{{region}}",
+								"apps",
+								"astra",
+								"datastax",
+								"com"
+							],
+							"path": [
+								"api",
+								"rest",
+								"v2",
+								"schemas",
+								"namespaces",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Namespace] - Delete a namespace",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Cassandra-Token",
+								"type": "text",
+								"value": "{{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{db}}-{{region}}.apps.astra.datastax.com/api/rest/v2/schemas/namespaces/{{namespace}}",
+							"protocol": "https",
+							"host": [
+								"{{db}}-{{region}}",
+								"apps",
+								"astra",
+								"datastax",
+								"com"
+							],
+							"path": [
+								"api",
+								"rest",
+								"v2",
+								"schemas",
+								"namespaces",
+								"{{namespace}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
